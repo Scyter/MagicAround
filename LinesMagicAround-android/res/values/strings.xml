@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LINES: Magic Around</string>
+    <string name="action_settings">Settings</string>
+    <string name="mybtn">My test Button</string>
+    <string name="btn">Sign Out</string>
+    <string name="i1">Move balls to create 5+ balls-line.</string>
+    <string name="i1a">(horisontal, vertical or diagonal)</string>
+    <string name="i2">Line removes and you score points.</string>
+    <string name="i3">3 new balls appears each tern.</string>
+    <string name="i4">Collect as more points as possible.</string>
+    <string name="i5">Some new balls appears each tern.</string>
+    <string name="i6">More balls appear at higher levels.</string>
+    <string name="i7">You have Magic and Skills to use.</string>
+    <string name="i8">FIREBALL</string>
+    <string name="i9">Remove any ball at game pole</string>
+    <string name="i10"> magic</string>
+    <string name="i11">ANOTHER FUTURE</string>
+    <string name="i12">Change next tern balls for other</string>
+    <string name="i13">tmp</string>
+    <string name="i14">tmp</string>
+    <string name="i15">tmp</string>
+    <string name="s1">GAME OVER!</string>
+    <string name="s2">Score:</string>
+    <string name="s3">Hight score:</string>
+    <string name="s4">Classic Lines</string>
+    <string name="s5">Hardcore Lines</string>
+    <string name="s6">Survival Lines</string>
+    <string name="s7">Kids Lines</string>
+    <string name="s8">Not Enough Magic</string>
+    <string name="s9">Survival Lines: level</string>
+    <string name="s10">Next level in</string>
+    <string name="s11">moves</string>
+    <string name="s12">Hero Level:</string>
+    <string name="s13">aaa</string>
+
+</resources>

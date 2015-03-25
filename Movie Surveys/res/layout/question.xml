@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/item_very_small_margin"
+        android:layout_marginTop="@dimen/item_very_small_margin" >
+
+        <ImageView
+            android:id="@+id/ivQuestion"
+            android:layout_width="60dp"
+            android:layout_height="90dp"
+            android:src="@drawable/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivQuestion"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textS1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_hor_small_margin"
+                android:layout_marginRight="@dimen/activity_hor_small_margin"
+                android:layout_marginTop="@dimen/activity_ver_small_margin"
+                android:gravity="center"
+                android:text="@string/question"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/textSurveys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_hor_small_margin"
+                android:layout_marginRight="@dimen/activity_hor_small_margin"
+                android:layout_marginTop="@dimen/activity_ver_small_margin"
+                android:gravity="center"
+                android:text="@string/question_info" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/llQ"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/back"
+            android:orientation="vertical"
+            android:visibility="invisible" >
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_hor_small_margin"
+                android:layout_weight="1" >
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.6" >
+
+                    <ImageButton
+                        android:id="@+id/ib1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/image_question1"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/no_image" />
+
+                    <ImageButton
+                        android:id="@+id/ib1X"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/image_question1"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/no_image"
+                        android:visibility="invisible" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/image_question1"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/no_image"
+                        android:visibility="invisible" />
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/tvInfo1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/tv1"
+                        android:layout_marginLeft="@dimen/activity_hor_small_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:gravity="left"
+                        android:text="@string/answer_info" />
+
+                    <TextView
+                        android:id="@+id/tvInfo1X"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/tv1"
+                        android:layout_marginLeft="@dimen/activity_hor_small_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:gravity="left"
+                        android:text="@string/answer_info" />
+
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="@dimen/activity_ver_small_margin"
+                        android:layout_marginLeft="@dimen/activity_hor_small_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:gravity="center|left"
+                        android:text="@string/answer"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tv1X"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="@dimen/activity_ver_small_margin"
+                        android:layout_marginLeft="@dimen/activity_hor_small_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:gravity="center|left"
+                        android:text="@string/answer"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/TableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/bQEqual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:alpha="100"
+                    android:text="@string/no_answer" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_weight="1" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/tvInfo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/tv2"
+                        android:layout_marginRight="@dimen/activity_hor_small_margin"
+                        android:gravity="right"
+                        android:text="@string/answer2_info" />
+
+                    <TextView
+                        android:id="@+id/tvInfo2X"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/tv2"
+                        android:layout_marginRight="@dimen/activity_hor_small_margin"
+                        android:gravity="right"
+                        android:text="@string/answer2_info" />
+
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="@dimen/activity_ver_small_margin"
+                        android:layout_marginRight="@dimen/activity_hor_small_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:gravity="right|center"
+                        android:text="@string/answer2"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <TextView
+                        android:id="@+id/tv2X"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="@dimen/activity_ver_small_margin"
+                        android:layout_marginRight="@dimen/activity_hor_small_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:gravity="right|center"
+                        android:text="@string/answer2"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.6" >
+
+                    <ImageButton
+                        android:id="@+id/ib2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/image_question2"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/no_image" />
+
+                    <ImageButton
+                        android:id="@+id/ib2X"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/image_question2"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/no_image"
+                        android:visibility="invisible" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/image_question2"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/no_image"
+                        android:visibility="invisible" />
+                </FrameLayout>
+            </TableRow>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlQ"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/ico_back"
+            android:gravity="center"
+            android:visibility="visible" >
+
+            <ProgressBar
+                android:id="@+id/pbQ"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/item_very_small_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin" >
+
+        <ImageButton
+            android:id="@+id/bBack"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/image_question2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_image"
+            android:text="@string/new_btn" />
+
+        <Button
+            android:id="@+id/bResult"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/bBack"
+            android:text="@string/result" />
+    </RelativeLayout>
+
+</TableLayout>

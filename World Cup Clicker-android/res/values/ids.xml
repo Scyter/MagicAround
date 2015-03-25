@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+
+    <string name="app_id">382749373458</string>
+    <string name="achievement_clicker_novice">CgkIkuiP7ZELEAIQAw</string>
+    <string name="achievement_clicker_master">CgkIkuiP7ZELEAIQBA</string>
+    <string name="achievement_clicker_genius">CgkIkuiP7ZELEAIQBQ</string>
+    <string name="achievement_novice_assistant_referee">CgkIkuiP7ZELEAIQAQ</string>
+    <string name="achievement_assistant_referee">CgkIkuiP7ZELEAIQBg</string>
+    <string name="leaderboard_world_cup_clicker">CgkIkuiP7ZELEAIQAg</string>
+    <string name="leaderboard_offside_master">CgkIkuiP7ZELEAIQAA</string>
+
+</resources>

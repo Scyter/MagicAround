@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/tvS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/activity_hor_small_margin"
+        android:layout_marginRight="75dp"
+        android:text="@string/question"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tvSI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvS"
+        android:layout_marginLeft="@dimen/activity_hor_small_margin"
+        android:layout_marginRight="75dp"
+        android:text="@string/question_info" />
+
+    <ImageView
+        android:id="@+id/ivS"
+        android:layout_width="60dp"
+        android:layout_height="90dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/for_image"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/ivNew"
+        android:layout_width="10dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="65dp"
+        android:src="@drawable/test" />
+
+</RelativeLayout>

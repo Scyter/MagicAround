@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+
+    <string name="app_id">308819212105</string>
+    <string name="achievement_classic_lines_master">CgkIye68uP4IEAIQAA</string>
+    <string name="achievement_hard_lines_master">CgkIye68uP4IEAIQAQ</string>
+    <string name="achievement_survival_lines_master">CgkIye68uP4IEAIQAg</string>
+    <string name="achievement_lines_destroyer">CgkIye68uP4IEAIQBA</string>
+    <string name="achievement_magic_master">CgkIye68uP4IEAIQBg</string>
+    <string name="achievement_classic_lines_hero">CgkIye68uP4IEAIQBw</string>
+    <string name="achievement_hardcore_lines_hero">CgkIye68uP4IEAIQCw</string>
+    <string name="achievement_survival_lines_hero">CgkIye68uP4IEAIQDA</string>
+    <string name="leaderboard_classic_game_score">CgkIye68uP4IEAIQCA</string>
+    <string name="leaderboard_hardcore_game_score">CgkIye68uP4IEAIQCQ</string>
+    <string name="leaderboard_survival_game_score">CgkIye68uP4IEAIQCg</string>
+
+</resources>

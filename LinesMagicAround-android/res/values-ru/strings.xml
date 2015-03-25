@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LINES: Магия рядом</string>
+    <string name="action_settings">Настройки</string>
+    <string name="mybtn">Моя тестовая кнопка</string>
+    <string name="btn">Выйти</string>
+    <string name="i1">Перемещай шары в линию из 5+ шаров.</string>
+    <string name="i1a">(по горизонтали, вертикали, диагонали)</string>
+    <string name="i2">Такая линия исчезнет, Вы получите очки.</string>
+    <string name="i3">3 новых шара появляются каждый ход.</string>
+    <string name="i4">Набери как можно больше очков.</string>
+    <string name="i5">Новые шары появляются каждый ход.</string>
+    <string name="i6">Чем выше уровень, тем больше шаров.</string>
+    <string name="i7">Можно использовать Магию на Навыки.</string>
+    <string name="i8">ОГНЕННЫЙ ШАР</string>
+    <string name="i9">Уничтожает любой шар на поле</string>
+    <string name="i10"> магии</string>
+    <string name="i11">ДРУГОЕ БУДУЩЕЕ</string>
+    <string name="i12">Заменяет следующий ход на другой.</string>
+    <string name="i13">tmp</string>
+    <string name="i14">tmp</string>
+    <string name="i15">tmp</string>
+    <string name="s1">ИГРА ОКОНЧЕНА!</string>
+    <string name="s2">Очки:</string>
+    <string name="s3">Рекорд:</string>
+    <string name="s4">Классические Lines</string>
+    <string name="s5">Хардкорные Lines</string>
+    <string name="s6">Выживание в Lines</string>
+    <string name="s7">Детские Lines</string>
+    <string name="s8">Не хватает Магии!</string>
+    <string name="s9">Выживание: уровень</string>
+    <string name="s10">Следующий через</string>
+    <string name="s11">ходов</string>
+    <string name="s12">Уровень героя:</string>
+    <string name="s13">aaa</string>
+
+</resources>
