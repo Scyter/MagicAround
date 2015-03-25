@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.magicaround.moviesurveys"
+    android:versionCode="10"
+    android:versionName="0.8.5a" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.magicaround.moviesurveysactivity.MainMovieActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.magicaround.moviesurveysactivity.SurveysActivity"
+            android:label="@string/survays_activity_name" >
+        </activity>
+        <activity
+            android:name="com.magicaround.moviesurveysactivity.QuestionActivity"
+            android:label="@string/survays_activity_name" >
+        </activity>
+        <activity android:name="com.magicaround.moviesurveysactivity.ResultActivity" >
+        </activity>
+        <activity android:name="com.magicaround.moviesurveysactivity.GraphActivity" >
+        </activity>
+        <activity android:name="com.magicaround.moviesurveysactivity.SettingsActivity" >
+        </activity>
+
+        <service
+            android:name="com.magicaround.task.GetSurveysService"
+            android:exported="false" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="com.magicaround.movie.getsurveys" />
+            </intent-filter>
+        </service>
+        <service android:name="com.magicaround.task.BackgroundService" >
+        </service>
+
+        <receiver
+            android:name="com.magicaround.task.BackgroundReceiver"
+            android:enabled="true"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
