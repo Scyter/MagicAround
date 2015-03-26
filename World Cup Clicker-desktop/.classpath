@@ -5,6 +5,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer"/>
 	<classpathentry kind="src" path="assets"/>
-	<classpathentry exported="true" kind="lib" path="D:/adt-bundle-windows-x86-20140702/workspace/MagicAround/bin/magicaround.jar" sourcepath="/MagicAround/src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/World Cup Clicker-android"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

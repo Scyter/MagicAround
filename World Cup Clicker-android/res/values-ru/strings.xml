@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Кликер Лиги Чемпионов УЕФА</string>
+    <string name="app_name">Футбольний Кликер на реакцию</string>
     <string name="title">Загрузить дополнительную графику</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="message">Хотели бы вы загрзуить новую графику (от 3 до 5 Mb)?</string>
-    <string name="dont_ask">Больше не спрашивать</string>
+    <string name="dont_ask">Не спрашивать</string>
     <string name="loading_complite">Загрузка новой графики завершена</string>
     <string name="tmp">!!!!!!!!!!!!!!!!!!!!!!!!!СТРАНЫ</string>
     <string name="c0">Албания</string>

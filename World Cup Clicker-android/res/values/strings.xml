@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">UEFA Champions League Clicker</string>
+    <string name="app_name">Football Reaction Clicker</string>
     <string name="title">Load new graphics</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="message">Would U like to load some new graphics (3to5Mb)?</string>
-    <string name="dont_ask">Do not ask again</string>
+    <string name="message">Would U like to load some new graphics (3 to 5Mb)?</string>
+    <string name="dont_ask">Don\'t ask</string>
     <string name="loading_complite">New graphics loading complited</string>
     <string name="tmp">!!!!!!!!!!!!!!!!!!!!!!!!!COUNTRIES</string>
     <string name="c0">Albania</string>
