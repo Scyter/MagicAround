@@ -3,16 +3,18 @@ package ma.com.runtracker;
 import java.util.Date;
 
 public class Run {
-
     private long mId;
     private Date mStartDate;
+
     public Run() {
         mId = -1;
         mStartDate = new Date();
     }
+
     public long getId() {
         return mId;
     }
+
     public void setId(long id) {
         mId = id;
     }
@@ -26,7 +28,7 @@ public class Run {
     }
 
     public int getDurationSeconds(long endMillis) {
-        return (int) ((endMillis - mStartDate.getTime()) / 1000);
+        return (int)((endMillis - mStartDate.getTime()) / 1000);
     }
 
     public static String formatDuration(int durationSeconds) {
@@ -35,4 +37,5 @@ public class Run {
         int hours = (durationSeconds - (minutes * 60) - seconds) / 3600;
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
+
 }

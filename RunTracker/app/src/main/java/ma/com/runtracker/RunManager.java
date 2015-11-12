@@ -7,12 +7,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-public class RunManager {
+public class RunManager implements LocationListener {
     private static final String TAG = "RunManager";
     public static final String ACTION_LOCATION = "com.ma.runtracker.ACTION_LOCATION";
 
@@ -20,17 +21,25 @@ public class RunManager {
     private static final String PREF_CURRENT_RUN_ID = "RunManager.currentRunId";
     private static final int MY_PERMISSION_ACCESS_COURSE_LOCATION = 99;
 
+    //The minimum distance to change updates in meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0; // 10 meters
+
+    //The minimum time beetwen updates in milliseconds
+    private static final long MIN_TIME_BW_UPDATES = 0;//1000 * 60 * 1; // 1 minute
+
+    private final static boolean forceNetwork = false;
+
     private RunDatabaseHelper mHelper;
     private SharedPreferences mPrefs;
     private long mCurrentRunId;
 
     private static RunManager sRunManager;
     private Context mAppContext;
-    private LocationManager mLocationManager;
+    private LocationManager locationManager;
 
     private RunManager(Context appContext) {
         mAppContext = appContext;
-        mLocationManager = (LocationManager) mAppContext.getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) mAppContext.getSystemService(Context.LOCATION_SERVICE);
         mHelper = new RunDatabaseHelper(mAppContext);
         mPrefs = mAppContext.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         mCurrentRunId = mPrefs.getLong(PREF_CURRENT_RUN_ID, -1);
@@ -59,21 +68,83 @@ public class RunManager {
         return PendingIntent.getBroadcast(mAppContext, 0, broadcast, flags);
     }
 
-    public void startLocationUpdates(Activity activity) {
-        String provider = LocationManager.GPS_PROVIDER;
-        if (ContextCompat.checkSelfPermission(mAppContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Location lastKnown = mLocationManager.getLastKnownLocation(provider);
-            if (lastKnown != null) {
-                lastKnown.setTime(System.currentTimeMillis());
-                broadcastLocation(lastKnown);
-            }
+    public RunDatabaseHelper.LocationCursor queryLocationsForRun(long runId) {
+        return mHelper.queryLocationsForRun(runId);
+    }
 
-            PendingIntent pi = getLocationPendingIntent(true);
-            mLocationManager.requestLocationUpdates(provider, 0, 0, pi);
-        } else {
-            ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
-                    MY_PERMISSION_ACCESS_COURSE_LOCATION);
+    public void startLocationUpdates(Activity activity) {
+        try {
+            double longitude = 0.0;
+            double latitude = 0.0;
+
+            // Get GPS and network status
+            boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            boolean locationServiceAvailable;
+            Location location;
+            if (forceNetwork) isGPSEnabled = false;
+
+            if (!isNetworkEnabled && !isGPSEnabled) {
+                // cannot get location
+                locationServiceAvailable = false;
+            }
+            //else
+            {
+                locationServiceAvailable = true;
+
+                Intent broadcast = new Intent(ACTION_LOCATION);
+                PendingIntent pi = PendingIntent.getBroadcast(mAppContext, 0, broadcast, 0);
+
+
+                if (isNetworkEnabled && ContextCompat.checkSelfPermission(mAppContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, pi);
+                    if (locationManager != null) {
+                        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        updateCoordinates(location);
+                    }
+                }
+                if (isGPSEnabled && ContextCompat.checkSelfPermission(mAppContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, pi);
+
+                    if (locationManager != null) {
+                        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        updateCoordinates(location);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+
         }
+    }
+
+    private void updateCoordinates(Location location) {
+        broadcastLocation(location);
+        Log.d("aaa", "updateCoordinates");
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d("aaa", "onLocationChanged");
+        broadcastLocation(location);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.d("aaa", "onStatusChanged");
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Log.d("aaa", "onProviderEnabled");
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.d("aaa", "onProviderDisabled");
     }
 
     private void broadcastLocation(Location location) {
@@ -85,7 +156,7 @@ public class RunManager {
     public void stopLocationUpdates() {
         PendingIntent pi = getLocationPendingIntent(false);
         if (pi != null) {
-            mLocationManager.removeUpdates(pi);
+            locationManager.removeUpdates(pi);
             pi.cancel();
         }
     }

@@ -2,10 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ma.com.runtracker" >
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-feature android:required="true"
-                  android:name="android.hardware.location.gps"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <permission
+        android:name="com.bignerdranch.android.runtracker.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/>
+    <uses-permission
+        android:name="com.bignerdranch.android.runtracker.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission
+        android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
+
+    <uses-feature
+        android:required="true"
+        android:glEsVersion="0x00020000"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +29,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-
         <activity
             android:name=".RunListActivity"
             android:label="@string/app_name"
@@ -24,14 +39,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RunActivity"
-                  android:label="@string/app_name" />
-        <receiver android:name=".TrackingLocationReceiver"
-                  android:exported="false">
+        <activity
+            android:name=".RunActivity"
+            android:label="@string/app_name" />
+
+        <receiver
+            android:name=".LocationReceiver"
+            android:exported="false" >
             <intent-filter>
-                <action android:name="com.ma.runtracker.ACTION_LOCATION"/>
+                <action android:name="com.ma.runtracker.ACTION_LOCATION" />
             </intent-filter>
         </receiver>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ma.com.runtracker.RunActivity" />
+        </activity>
+
+
+        <activity
+            android:name=".RunMapActivity"
+            android:label="@string/title_activity_maps" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ma.com.runtracker.RunActivity" />
+        </activity>
     </application>
 
 </manifest>
