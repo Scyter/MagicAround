@@ -1,19 +1,16 @@
 package ma.com.runtracker;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-public class RunManager implements LocationListener {
+public class RunManager {
     private static final String TAG = "RunManager";
     public static final String ACTION_LOCATION = "com.ma.runtracker.ACTION_LOCATION";
 
@@ -39,7 +36,7 @@ public class RunManager implements LocationListener {
 
     private RunManager(Context appContext) {
         mAppContext = appContext;
-        locationManager = (LocationManager) mAppContext.getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager)mAppContext.getSystemService(Context.LOCATION_SERVICE);
         mHelper = new RunDatabaseHelper(mAppContext);
         mPrefs = mAppContext.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         mCurrentRunId = mPrefs.getLong(PREF_CURRENT_RUN_ID, -1);
@@ -47,19 +44,10 @@ public class RunManager implements LocationListener {
 
     public static RunManager get(Context c) {
         if (sRunManager == null) {
+            // we use the application context to avoid leaking activities
             sRunManager = new RunManager(c.getApplicationContext());
         }
         return sRunManager;
-    }
-
-    public Run getRun(long id) {
-        Run run = null;
-        RunDatabaseHelper.RunCursor cursor = mHelper.queryRun(id);
-        cursor.moveToFirst();
-        if (!cursor.isAfterLast())
-            run = cursor.getRun();
-        cursor.close();
-        return run;
     }
 
     private PendingIntent getLocationPendingIntent(boolean shouldCreate) {
@@ -68,11 +56,7 @@ public class RunManager implements LocationListener {
         return PendingIntent.getBroadcast(mAppContext, 0, broadcast, flags);
     }
 
-    public RunDatabaseHelper.LocationCursor queryLocationsForRun(long runId) {
-        return mHelper.queryLocationsForRun(runId);
-    }
-
-    public void startLocationUpdates(Activity activity) {
+    public void startLocationUpdates() {
         try {
             double longitude = 0.0;
             double latitude = 0.0;
@@ -126,27 +110,6 @@ public class RunManager implements LocationListener {
         Log.d("aaa", "updateCoordinates");
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-        Log.d("aaa", "onLocationChanged");
-        broadcastLocation(location);
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        Log.d("aaa", "onStatusChanged");
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        Log.d("aaa", "onProviderEnabled");
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        Log.d("aaa", "onProviderDisabled");
-    }
-
     private void broadcastLocation(Location location) {
         Intent broadcast = new Intent(ACTION_LOCATION);
         broadcast.putExtra(LocationManager.KEY_LOCATION_CHANGED, location);
@@ -169,27 +132,47 @@ public class RunManager implements LocationListener {
         return run != null && run.getId() == mCurrentRunId;
     }
 
-    public Run startNewRun(Activity activity) {
+    public Run startNewRun() {
+        // insert a run into the db
         Run run = insertRun();
-        startTrackingRun(run, activity);
+        // start tracking the run
+        startTrackingRun(run);
         return run;
     }
 
-    public void startTrackingRun(Run run, Activity activity) {
+    public void startTrackingRun(Run run) {
+        // keep the ID
         mCurrentRunId = run.getId();
-        mPrefs.edit().putLong(PREF_CURRENT_RUN_ID, mCurrentRunId).apply();
-        startLocationUpdates(activity);
+        // store it in shared preferences
+        mPrefs.edit().putLong(PREF_CURRENT_RUN_ID, mCurrentRunId).commit();
+        // start location updates
+        startLocationUpdates();
     }
 
     public void stopRun() {
         stopLocationUpdates();
         mCurrentRunId = -1;
-        mPrefs.edit().remove(PREF_CURRENT_RUN_ID).apply();
+        mPrefs.edit().remove(PREF_CURRENT_RUN_ID).commit();
     }
 
     private Run insertRun() {
         Run run = new Run();
         run.setId(mHelper.insertRun(run));
+        return run;
+    }
+
+    public RunDatabaseHelper.RunCursor queryRuns() {
+        return mHelper.queryRuns();
+    }
+
+    public Run getRun(long id) {
+        Run run = null;
+        RunDatabaseHelper.RunCursor cursor = mHelper.queryRun(id);
+        cursor.moveToFirst();
+        // if we got a row, get a run
+        if (!cursor.isAfterLast())
+            run = cursor.getRun();
+        cursor.close();
         return run;
     }
 
@@ -205,15 +188,15 @@ public class RunManager implements LocationListener {
         Location location = null;
         RunDatabaseHelper.LocationCursor cursor = mHelper.queryLastLocationForRun(runId);
         cursor.moveToFirst();
-// Если набор не пуст, получить местоположение
+        // if we got a row, get a location
         if (!cursor.isAfterLast())
             location = cursor.getLocation();
         cursor.close();
         return location;
     }
 
-    public RunDatabaseHelper.RunCursor queryRuns() {
-        return mHelper.queryRuns();
+    public RunDatabaseHelper.LocationCursor queryLocationsForRun(long runId) {
+        return mHelper.queryLocationsForRun(runId);
     }
 
 }

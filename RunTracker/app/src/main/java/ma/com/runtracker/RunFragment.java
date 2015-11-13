@@ -30,9 +30,10 @@ public class RunFragment extends Fragment {
     public RunFragment() {
     }
 
-    private BroadcastReceiver mLocationReceiver = new LocationReceiver() {
+    private BroadcastReceiver mLocationReceiver = new TrackingLocationReceiver() {
         @Override
         protected void onLocationReceived(Context context, Location loc) {
+            super.onLocationReceived(context, loc);
             if (!mRunManager.isTrackingRun(mRun))
                 return;
             mLastLocation = loc;
@@ -85,9 +86,9 @@ public class RunFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mRun == null) {
-                    mRun = mRunManager.startNewRun(RunFragment.this.getActivity());
+                    mRun = mRunManager.startNewRun();
                 } else {
-                    mRunManager.startTrackingRun(mRun, RunFragment.this.getActivity());
+                    mRunManager.startTrackingRun(mRun);
                 }
                 updateUI();
             }

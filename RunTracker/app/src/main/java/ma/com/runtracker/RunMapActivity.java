@@ -3,7 +3,8 @@ package ma.com.runtracker;
 import android.support.v4.app.Fragment;
 
 public class RunMapActivity extends SingleFragmentActivity {
-    public static final String EXTRA_RUN_ID = "com.ma.runtracker.run_id";
+    /** A key for passing a run ID as a long */
+    public static final String EXTRA_RUN_ID = "RUN_ID";
 
     @Override
     protected Fragment createFragment() {
@@ -14,4 +15,5 @@ public class RunMapActivity extends SingleFragmentActivity {
             return new RunMapFragment();
         }
     }
+
 }
