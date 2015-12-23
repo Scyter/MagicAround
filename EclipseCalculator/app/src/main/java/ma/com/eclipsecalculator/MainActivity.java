@@ -1,4 +1,4 @@
-package eclipse.ma.com.eclipsecalculator;
+package ma.com.eclipsecalculator;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

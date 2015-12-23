@@ -1,4 +1,4 @@
-package eclipse.ma.com.eclipsecalculator;
+package eclipse.ma.com.asdf;
 
 import org.junit.Test;
 

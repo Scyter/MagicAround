@@ -1,4 +1,4 @@
-package eclipse.ma.com.eclipsecalculator;
+package ma.com.eclipsecalculator;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
