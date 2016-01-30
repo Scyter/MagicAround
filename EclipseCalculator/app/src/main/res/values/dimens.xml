@@ -9,4 +9,5 @@
 
     <!-- Drawable params -->
     <dimen name="background_radius">4dp</dimen>
+    <dimen name="stroke_radius">1dp</dimen>
 </resources>
