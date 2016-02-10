@@ -1,15 +1,14 @@
 package ma.com.eclipsecalculator.model;
 
-import java.util.Comparator;
-
 public enum ShipType {
-    INTERCEPTOR (1),
-    CRUISER (2),
-    DREADNOUGHT (3),
-    STAR_BASE (4),
-    ANCIENT (5),
-    CENTER (6),
-    UNKNOWN (0);
+    INTERCEPTOR (2),
+    CRUISER (4),
+    DREADNOUGHT (5),
+    STAR_BASE (3),
+    ORBITAL (1),
+    DEATH_MOON (6),
+    ANCIENT (10),
+    CENTER (11);
 
     private final int value;
 
@@ -20,10 +19,4 @@ public enum ShipType {
     public int getValue() {
         return value;
     }
-
-    public static Comparator<ShipType> comparator = new Comparator<ShipType>() {
-        public int compare(ShipType type1, ShipType type2) {
-            return type1.getValue() - type2.getValue();
-        }
-    };
 }

@@ -1,8 +1,6 @@
 package ma.com.eclipsecalculator.model;
 
-import android.support.annotation.NonNull;
-
-public class Survivor implements Comparable{
+public class Survivor {
     private boolean isAttacker;
     private ShipType type;
     private int count;
@@ -11,6 +9,12 @@ public class Survivor implements Comparable{
         this.isAttacker = isAttacker;
         this.type = type;
         this.count = count;
+    }
+
+    public Survivor(boolean isAttacker, Ship ship) {
+        this.isAttacker = isAttacker;
+        this.type = ship.getType();
+        this.count = ship.getCurrentCount();
     }
 
     @Override
@@ -30,14 +34,7 @@ public class Survivor implements Comparable{
     }
 
     @Override
-    public int compareTo(@NonNull Object another) {
-        Survivor that = (Survivor) another;
-        if (isAttacker && !that.isAttacker) {
-            return 1;
-        }
-        if (!isAttacker && that.isAttacker) {
-            return -1;
-        }
-        return ShipType.comparator.compare(this.type, ((Survivor)another).type);
+    public int hashCode() {
+        return type.getValue() * (1 + (isAttacker ? 1 : 0)) * count;
     }
 }
