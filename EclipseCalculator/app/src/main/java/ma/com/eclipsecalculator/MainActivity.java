@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import java.util.HashSet;
 
-import ma.com.eclipsecalculator.model.BattleResult;
+import ma.com.eclipsecalculator.model.BattleResultOld;
 import ma.com.eclipsecalculator.model.ShipType;
 import ma.com.eclipsecalculator.model.Survivor;
 
@@ -53,12 +53,12 @@ public class MainActivity extends AppCompatActivity
         final Survivor s3 = new Survivor(false, ShipType.CRUISER, 3);
         final Survivor s4 = new Survivor(false, ShipType.INTERCEPTOR, 3);
 
-        BattleResult b1 = new BattleResult(new HashSet<Survivor>() {{
+        BattleResultOld b1 = new BattleResultOld(new HashSet<Survivor>() {{
             add(s1);
             add(s2);
         }});
 
-        BattleResult b2 = new BattleResult(new HashSet<Survivor>() {{
+        BattleResultOld b2 = new BattleResultOld(new HashSet<Survivor>() {{
             add(s3);
             add(s4);
         }});

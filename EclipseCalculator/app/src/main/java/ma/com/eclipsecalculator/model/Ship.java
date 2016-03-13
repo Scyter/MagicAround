@@ -9,8 +9,8 @@ public class Ship {
 
     private int ion;
     private int plasma;
-    private int antiMaterial;
     private int soliton;
+    private int antiMaterial;
     private int rift;
 
     private int ionMissile;

@@ -7,8 +7,9 @@ public enum ShipType {
     STAR_BASE (3),
     ORBITAL (1),
     DEATH_MOON (6),
-    ANCIENT (10),
-    CENTER (11);
+    ANCIENT (7),
+    CENTER (8),
+    ANOMALY (9);
 
     private final int value;
 

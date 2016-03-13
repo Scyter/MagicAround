@@ -1,38 +1,19 @@
 package ma.com.eclipsecalculator.model;
 
-import java.util.Set;
+import java.util.List;
 
 public class BattleResult {
-    public Set<Survivor> survivors;
 
-    public BattleResult(Set<Survivor> survivors) {
-        this.survivors = survivors;
-    }
+    private long result;
 
-    public boolean add(Survivor survivor) {
-        return survivors.add(survivor);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    public void setResult(boolean isAttackerWin, List<Ship> ships) {
+        long temp = 0;
+        for (Ship ship : ships) {
+            temp += ship.getType().getValue() * ship.getCurrentCount();
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        BattleResult that = (BattleResult) o;
-
-        return this.equals(that);
+        result = temp * (isAttackerWin ? 1 : -1);
     }
 
-    @Override
-    public int hashCode() {
-        int hashCode = 0;
-        for (Survivor survivor : survivors) {
-            hashCode += survivor.hashCode();
-        }
-        return hashCode;
-    }
+
 }
+
