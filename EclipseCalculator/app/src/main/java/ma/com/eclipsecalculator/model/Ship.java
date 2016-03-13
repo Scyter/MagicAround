@@ -1,8 +1,12 @@
 package ma.com.eclipsecalculator.model;
 
+import ma.com.eclipsecalculator.Utils.RandomUtils;
+
 public class Ship {
 
     private ShipType type;
+
+    private boolean isAttacker;
 
     private int count;
     private int currentCount;
@@ -15,6 +19,7 @@ public class Ship {
 
     private int ionMissile;
     private int plasmaMissile;
+    private int antiMaterialMissile;
 
     private int computer;
     private int shield;
@@ -22,7 +27,49 @@ public class Ship {
     private int hull;
     private int currentHull;
 
+    private int regeneration;
+
     private int initiative;
+
+    private boolean struck;
+
+    public Strike strike() {
+        Strike strike = new Strike();
+        for (int i = 0; i < ion; i++) {
+            strike.put(1, RandomUtils.roll());
+        }
+        for (int i = 0; i < plasma; i++) {
+            strike.put(2, RandomUtils.roll());
+        }
+        for (int i = 0; i < soliton; i++) {
+            strike.put(3, RandomUtils.roll());
+        }
+        for (int i = 0; i < antiMaterial; i++) {
+            strike.put(4, RandomUtils.roll());
+        }
+        return strike;
+    }
+
+    public void hit(int hit) {
+        currentHull -= hit;
+        if (currentHull <= 0) {
+            die();
+        }
+    }
+
+    public void clear() {
+        currentCount = count;
+        currentHull = hull;
+        struck = false;
+    }
+
+    public void nextRound() {
+        struck = false;
+        currentHull += regeneration;
+        if (currentHull > hull) {
+            currentHull = hull;
+        }
+    }
 
     public ShipType getType() {
         return type;
@@ -34,5 +81,106 @@ public class Ship {
 
     public int getCurrentCount() {
         return currentCount;
+    }
+
+    public int getAntiMaterial() {
+        return antiMaterial;
+    }
+
+    public void setAntiMaterial(int antiMaterial) {
+        this.antiMaterial = antiMaterial;
+    }
+
+    public int getComputer() {
+        return computer;
+    }
+
+    public void setComputer(int computer) {
+        this.computer = computer;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getHull() {
+        return hull;
+    }
+
+    public void setHull(int hull) {
+        this.hull = hull;
+    }
+
+    public int getIon() {
+        return ion;
+    }
+
+    public void setIon(int ion) {
+        this.ion = ion;
+    }
+
+    public int getPlasma() {
+        return plasma;
+    }
+
+    public void setPlasma(int plasma) {
+        this.plasma = plasma;
+    }
+
+    public boolean isStruck() {
+        return struck;
+    }
+
+    public void setIsAttacked(boolean isAttacked) {
+        this.struck = isAttacked;
+    }
+
+    public int getRegeneration() {
+        return regeneration;
+    }
+
+    public void setRegeneration(int regeneration) {
+        this.regeneration = regeneration;
+    }
+
+    public int getShield() {
+        return shield;
+    }
+
+    public void setShield(int shield) {
+        this.shield = shield;
+    }
+
+    public int getSoliton() {
+        return soliton;
+    }
+
+    public void setSoliton(int soliton) {
+        this.soliton = soliton;
+    }
+
+    public boolean isAttacker() {
+        return isAttacker;
+    }
+
+    public void setIsAttacker(boolean isAttacker) {
+        this.isAttacker = isAttacker;
+    }
+
+    public double getInitiative() {
+        return initiative + (isAttacker ? 0 : 0.1);
+    }
+
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    private void die() {
+        currentHull = hull;
+        currentCount--;
     }
 }
