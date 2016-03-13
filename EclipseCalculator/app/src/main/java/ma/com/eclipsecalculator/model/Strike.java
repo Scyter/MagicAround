@@ -1,7 +1,7 @@
 package ma.com.eclipsecalculator.model;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-public class Strike extends HashMap<Integer, Integer> {
+public class Strike extends ArrayList<Die> {
 
 }

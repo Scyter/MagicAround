@@ -14,11 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.HashSet;
+import java.util.Map;
 
-import ma.com.eclipsecalculator.model.BattleResultOld;
+import ma.com.eclipsecalculator.model.Battle;
+import ma.com.eclipsecalculator.model.BattleResult;
+import ma.com.eclipsecalculator.model.Ship;
 import ma.com.eclipsecalculator.model.ShipType;
-import ma.com.eclipsecalculator.model.Survivor;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,23 +49,28 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        final Survivor s1 = new Survivor(true, ShipType.INTERCEPTOR, 3);
-        final Survivor s2 = new Survivor(true, ShipType.CRUISER, 2);
-        final Survivor s3 = new Survivor(false, ShipType.CRUISER, 3);
-        final Survivor s4 = new Survivor(false, ShipType.INTERCEPTOR, 3);
-
-        BattleResultOld b1 = new BattleResultOld(new HashSet<Survivor>() {{
-            add(s1);
-            add(s2);
-        }});
-
-        BattleResultOld b2 = new BattleResultOld(new HashSet<Survivor>() {{
-            add(s3);
-            add(s4);
-        }});
-
         TextView text = (TextView) findViewById(R.id.text);
-        text.setText(b1.equals(b2) + " ");
+
+        Battle battle = new Battle();
+        battle.addAttacker(
+                new Ship(true, ShipType.INTERCEPTOR, 1,
+                        1, 0, 0, 0,
+                        2, 0, 0, 0, 3));
+        battle.addDefender(
+                new Ship(true, ShipType.ANCIENT, 1,
+                        2, 0, 0, 0,
+                        1, 0, 1, 0, 2));
+
+        battle.calculate();
+        Map<BattleResult, Integer> results = battle.getResults();
+        StringBuilder resultText = new StringBuilder();
+        for (Map.Entry<BattleResult,Integer> entry : results.entrySet()) {
+            BattleResult battleResult = entry.getKey();
+            Integer count = entry.getValue();
+            resultText.append(battleResult.getResult()).append(" : ").append(count);
+        }
+        text.setText(resultText.toString());
+
 
     }
 

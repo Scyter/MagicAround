@@ -33,25 +33,41 @@ public class Ship {
 
     private boolean struck;
 
+    public Ship(boolean isAttacker, ShipType type, int count, int ion, int plasma, int soliton, int antiMaterial,
+                int computer, int shield, int hull, int regeneration, int initiative) {
+        this.isAttacker = isAttacker;
+        this.ion = ion;
+        this.plasma = plasma;
+        this.soliton = soliton;
+        this.antiMaterial = antiMaterial;
+        this.computer = computer;
+        this.shield = shield;
+        this.hull = hull;
+        this.regeneration = regeneration;
+        this.initiative = initiative;
+        this.count = count;
+        this.type = type;
+    }
+
     public Strike strike() {
         Strike strike = new Strike();
         for (int i = 0; i < ion; i++) {
-            strike.put(1, RandomUtils.roll());
+            strike.add(new Die(1, RandomUtils.roll()));
         }
         for (int i = 0; i < plasma; i++) {
-            strike.put(2, RandomUtils.roll());
+            strike.add(new Die(2, RandomUtils.roll()));
         }
         for (int i = 0; i < soliton; i++) {
-            strike.put(3, RandomUtils.roll());
+            strike.add(new Die(3, RandomUtils.roll()));
         }
         for (int i = 0; i < antiMaterial; i++) {
-            strike.put(4, RandomUtils.roll());
+            strike.add(new Die(4, RandomUtils.roll()));
         }
         return strike;
     }
 
-    public void hit(int hit) {
-        currentHull -= hit;
+    public void hit(int damage) {
+        currentHull -= damage;
         if (currentHull <= 0) {
             die();
         }
