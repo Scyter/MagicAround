@@ -3,11 +3,12 @@ package ma.com.eclipsecalculator.model;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Battle {
-    private static final int ITERATIONS = 10;
+    private static final int ITERATIONS = 1000;
 
     private List<Ship> attackers;
     private List<Ship> defenders;
@@ -17,6 +18,7 @@ public class Battle {
     public Battle() {
         attackers = new ArrayList<>();
         defenders = new ArrayList<>();
+        results = new HashMap<>();
     }
 
     public void addAttacker(Ship ship) {
@@ -37,6 +39,7 @@ public class Battle {
                     nextRound();
                 } else {
                     calculateStrike(strikingShip);
+                    strikingShip.setIsAttacked(true);
                 }
             }
             BattleResult result = getResult();
@@ -64,7 +67,6 @@ public class Battle {
     }
 
     private void nextRound() {
-        Log.d("aaa", "nextRound");
         for (Ship ship : attackers) {
             ship.nextRound();
         }
@@ -74,19 +76,18 @@ public class Battle {
     }
 
     private boolean battleNotEnded() {
+        boolean livedAttacker = false, livedDefender = false;
         for (Ship ship : attackers) {
             if (ship.getCurrentCount() > 0) {
-                Log.d("aaa", "ended");
-                return true;
+                livedAttacker = true;
             }
         }
         for (Ship ship : defenders) {
             if (ship.getCurrentCount() > 0) {
-                Log.d("aaa", "ended");
-                return true;
+                livedDefender = true;
             }
         }
-        return false;
+        return livedAttacker && livedDefender;
     }
 
     private Ship getStriker() {
@@ -108,25 +109,21 @@ public class Battle {
     }
 
     private void calculateStrike(Ship ship) {
-        Log.d("aaa", "calculateStrike");
         Strike strike = ship.strike();
 
-        for (Ship target : ship.isAttacker() ? defenders : attackers) {
-            if (target.getCurrentCount() == 0) {
-                continue;
-            }
-
-            for (Die die : strike) {
+        for (Die die : strike) {
+            for (Ship target : ship.isAttacker() ? defenders : attackers) {
+                if (target.getCurrentCount() == 0) {
+                    continue;
+                }
                 int roll = die.getRoll();
                 int damage = die.getDamage();
                 if (roll > 1 && roll < 6) {
                     if (roll + ship.getComputer() - target.getShield() >= 6) {
                         target.hit(damage);
-                        strike.remove(die);
                     }
                 } else if (roll == 6) {
                     target.hit(damage);
-                    strike.remove(die);
                 }
             }
         }
@@ -140,7 +137,5 @@ public class Battle {
         }
         return new BattleResult(false, defenders);
     }
-
-
 
 }

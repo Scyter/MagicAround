@@ -9,7 +9,7 @@ public class BattleResult {
     public BattleResult(boolean isAttackerWin, List<Ship> ships) {
         long temp = 0;
         for (Ship ship : ships) {
-            temp += ship.getType().getValue() * ship.getCurrentCount();
+            temp += Math.pow(10, ship.getType().getValue()) * ship.getCurrentCount();
         }
         result = temp * (isAttackerWin ? 1 : -1);
     }

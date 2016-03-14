@@ -33,7 +33,7 @@ public class Ship {
 
     private boolean struck;
 
-    public Ship(boolean isAttacker, ShipType type, int count, int ion, int plasma, int soliton, int antiMaterial,
+    public Ship(boolean isAttacker, int type, int count, int ion, int plasma, int soliton, int antiMaterial,
                 int computer, int shield, int hull, int regeneration, int initiative) {
         this.isAttacker = isAttacker;
         this.ion = ion;
@@ -46,7 +46,7 @@ public class Ship {
         this.regeneration = regeneration;
         this.initiative = initiative;
         this.count = count;
-        this.type = type;
+        this.type = new ShipType(type);
     }
 
     public Strike strike() {
@@ -68,7 +68,7 @@ public class Ship {
 
     public void hit(int damage) {
         currentHull -= damage;
-        if (currentHull <= 0) {
+        if (currentHull < 0) {
             die();
         }
     }
