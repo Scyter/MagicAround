@@ -4,7 +4,7 @@ import java.util.List;
 
 public class BattleResult {
 
-    private long result;
+    private long result = 0;
 
     public BattleResult(boolean isAttackerWin, List<Ship> ships) {
         long temp = 0;
@@ -27,6 +27,11 @@ public class BattleResult {
     @Override
     public int hashCode() {
         return (int) result;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(result);
     }
 
     public long getResult() {

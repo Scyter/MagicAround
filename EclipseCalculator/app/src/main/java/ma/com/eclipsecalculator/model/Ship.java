@@ -1,7 +1,7 @@
 package ma.com.eclipsecalculator.model;
 
-import ma.com.eclipsecalculator.Utils.L;
-import ma.com.eclipsecalculator.Utils.RandomUtils;
+import ma.com.eclipsecalculator.utilsss.L;
+import ma.com.eclipsecalculator.utilsss.RandomUtils;
 
 public class Ship {
 
@@ -157,8 +157,8 @@ public class Ship {
         return struck;
     }
 
-    public void setIsAttacked(boolean isAttacked) {
-        this.struck = isAttacked;
+    public void setIsStruck(boolean struck) {
+        this.struck = struck;
     }
 
     public int getRegeneration() {

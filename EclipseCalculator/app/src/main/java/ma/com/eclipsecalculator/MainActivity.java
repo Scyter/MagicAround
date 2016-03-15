@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import java.util.Map;
 
+import ma.com.eclipsecalculator.utilsss.L;
+import ma.com.eclipsecalculator.utilsss.RandomUtils;
 import ma.com.eclipsecalculator.model.Battle;
 import ma.com.eclipsecalculator.model.BattleResult;
 import ma.com.eclipsecalculator.model.Ship;
@@ -53,13 +55,13 @@ public class MainActivity extends AppCompatActivity
 
         Battle battle = new Battle();
         battle.addAttacker(
-                new Ship(true, ShipType.INTERCEPTOR, 1,
+                new Ship(true, ShipType.INTERCEPTOR, 5,
                         1, 0, 0, 0,
-                        0, 0,
+                        1, 0,
                         0, 0,
                         3));
         battle.addDefender(
-                new Ship(false, ShipType.ANCIENT, 1,
+                new Ship(false, ShipType.ANCIENT, 2,
                         2, 0, 0, 0,
                         1, 0,
                         1, 0,
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity
         text.setText(resultText.toString());
 
 
+        L.a(RandomUtils.rollsString());
     }
 
     @Override

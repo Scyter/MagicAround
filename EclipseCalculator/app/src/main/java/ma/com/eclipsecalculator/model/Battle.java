@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ma.com.eclipsecalculator.Utils.L;
+import ma.com.eclipsecalculator.utilsss.L;
 
 public class Battle {
     private static final int ITERATIONS = 1000;
@@ -39,7 +39,7 @@ public class Battle {
                     nextRound();
                 } else {
                     calculateStrike(strikingShip);
-                    strikingShip.setIsAttacked(true);
+                    strikingShip.setIsStruck(true);
                 }
             }
             BattleResult result = getResult();
