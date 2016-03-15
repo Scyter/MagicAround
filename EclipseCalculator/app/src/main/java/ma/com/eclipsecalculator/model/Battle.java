@@ -1,11 +1,11 @@
 package ma.com.eclipsecalculator.model;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ma.com.eclipsecalculator.Utils.L;
 
 public class Battle {
     private static final int ITERATIONS = 1000;
@@ -31,7 +31,7 @@ public class Battle {
 
     public void calculate() {
         for (int i = 0; i < ITERATIONS; i++) {
-            Log.d("aaa", i + "");
+            L.a(i + " iteration");
             clearBattle();
             while (battleNotEnded()) {
                 Ship strikingShip = getStriker();
@@ -67,6 +67,7 @@ public class Battle {
     }
 
     private void nextRound() {
+        L.b("next round");
         for (Ship ship : attackers) {
             ship.nextRound();
         }
@@ -87,6 +88,7 @@ public class Battle {
                 livedDefender = true;
             }
         }
+        L.b("battleNotEnded: " + livedAttacker + " " + livedDefender);
         return livedAttacker && livedDefender;
     }
 
@@ -111,13 +113,16 @@ public class Battle {
     private void calculateStrike(Ship ship) {
         Strike strike = ship.strike();
 
+        L.b(ship.isAttacker() + " " + ship.getTypeString() + " " + strike.size());
         for (Die die : strike) {
             for (Ship target : ship.isAttacker() ? defenders : attackers) {
                 if (target.getCurrentCount() == 0) {
+                    L.b("no target");
                     continue;
                 }
                 int roll = die.getRoll();
                 int damage = die.getDamage();
+                L.b("roll:" + roll + " damage: " + damage);
                 if (roll > 1 && roll < 6) {
                     if (roll + ship.getComputer() - target.getShield() >= 6) {
                         target.hit(damage);

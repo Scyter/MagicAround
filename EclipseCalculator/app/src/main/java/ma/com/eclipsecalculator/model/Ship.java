@@ -1,5 +1,6 @@
 package ma.com.eclipsecalculator.model;
 
+import ma.com.eclipsecalculator.Utils.L;
 import ma.com.eclipsecalculator.Utils.RandomUtils;
 
 public class Ship {
@@ -68,6 +69,7 @@ public class Ship {
 
     public void hit(int damage) {
         currentHull -= damage;
+        L.b(isAttacker() + " " + getTypeString() + " damage: " + damage + " currentHull:" + currentHull);
         if (currentHull < 0) {
             die();
         }
@@ -89,6 +91,10 @@ public class Ship {
 
     public ShipType getType() {
         return type;
+    }
+
+    public String getTypeString() {
+        return type.toString();
     }
 
     public void setType(ShipType type) {
@@ -198,5 +204,6 @@ public class Ship {
     private void die() {
         currentHull = hull;
         currentCount--;
+        L.b(isAttacker() + " " + getTypeString() + " die. Current count:" + currentCount);
     }
 }

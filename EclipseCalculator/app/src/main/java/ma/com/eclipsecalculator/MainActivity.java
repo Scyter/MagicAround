@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         battle.addAttacker(
                 new Ship(true, ShipType.INTERCEPTOR, 1,
                         1, 0, 0, 0,
-                        2, 0,
+                        0, 0,
                         0, 0,
                         3));
         battle.addDefender(
