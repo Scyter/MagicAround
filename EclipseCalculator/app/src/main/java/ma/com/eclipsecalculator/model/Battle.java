@@ -31,7 +31,9 @@ public class Battle {
 
     public void calculate() {
         for (int i = 0; i < ITERATIONS; i++) {
-            L.a(i + " iteration");
+            if (i % 100 == 0) {
+                L.a(i + " iteration");
+            }
             clearBattle();
             while (battleNotEnded()) {
                 Ship strikingShip = getStriker();

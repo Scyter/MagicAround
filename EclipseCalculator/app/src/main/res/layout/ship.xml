@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:picker="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ma.com.eclipsecalculator.widget.UpgradePicker
+            android:id="@+id/ion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            picker:background_color="@drawable/background_yellow"
+            picker:upgrade="@drawable/ion">
+
+        </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+        <ma.com.eclipsecalculator.widget.UpgradePicker
+            android:id="@+id/plasma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            picker:background_color="@drawable/background_orange"
+            picker:upgrade="@drawable/plasma">
+
+        </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+        <ma.com.eclipsecalculator.widget.UpgradePicker
+            android:id="@+id/soliton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            picker:background_color="@drawable/background_blue"
+            picker:upgrade="@drawable/soliton">
+
+        </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+        <ma.com.eclipsecalculator.widget.UpgradePicker
+            android:id="@+id/antimaterial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            picker:background_color="@drawable/background_red"
+            picker:upgrade="@drawable/anti_material">
+
+        </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ma.com.eclipsecalculator.widget.UpgradePicker
+            android:id="@+id/ion_missile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            picker:background_color="@drawable/background_yellow"
+            picker:upgrade="@drawable/ion_missile">
+
+        </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+        <ma.com.eclipsecalculator.widget.UpgradePicker
+            android:id="@+id/plasma_missile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            picker:background_color="@drawable/background_orange"
+            picker:upgrade="@drawable/plasma_missile">
+
+        </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+        <ma.com.eclipsecalculator.widget.UpgradePicker
+            android:id="@+id/soliton_missile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            picker:background_color="@drawable/background_blue"
+            picker:upgrade="@drawable/soliton_missile">
+
+        </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+        <ma.com.eclipsecalculator.widget.UpgradePicker
+            android:id="@+id/antimaterial_missile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            picker:background_color="@drawable/background_red"
+            picker:upgrade="@drawable/anti_material_missile">
+
+        </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
+</LinearLayout>

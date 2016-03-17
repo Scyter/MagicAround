@@ -10,12 +10,13 @@
 
     <!-- Drawable params -->
     <dimen name="background_radius">16dp</dimen>
-    <dimen name="stroke_radius">4dp</dimen>
+    <dimen name="stroke_radius">2dp</dimen>
 
     <!-- Widgets -->
-    <dimen name="picker_size">300dp</dimen>
+    <dimen name="picker_size">80dp</dimen>
+    <dimen name="picker_padding">4dp</dimen>
 
     <!-- Text sizes -->
-    <dimen name="picker_text_size">120sp</dimen>
+    <dimen name="picker_text_size">30sp</dimen>
 
 </resources>

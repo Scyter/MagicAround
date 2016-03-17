@@ -48,10 +48,6 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
     @Override
     public void update(Integer value) {
         changeValue(value);
-
-        if (textValue != null) {
-            textValue.setText(String.valueOf(value));
-        }
     }
 
     protected int getLayout() {
@@ -72,8 +68,8 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
 
     private void init(AttributeSet attrs) {
         Context context = getContext();
-
-        parent = inflate(context, getLayout(), this);
+        inflate(context, getLayout(), this);
+        parent = findViewById(R.id.upgrade_picker_parent);
 
         image = (ImageView) findViewById(R.id.upgrade_image);
         viewUp = findViewUp();
@@ -132,6 +128,13 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
             this.value = maxValue;
         } else {
             this.value = value;
+        }
+        updateView();
+    }
+
+    private void updateView() {
+        if (textValue != null) {
+            textValue.setText(String.valueOf(value));
         }
     }
 }

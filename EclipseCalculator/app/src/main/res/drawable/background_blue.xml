@@ -6,5 +6,5 @@
 
     <stroke
         android:width="@dimen/stroke_radius"
-        android:color="@color/black_border"/>
+        android:color="@color/blue_border"/>
 </shape>

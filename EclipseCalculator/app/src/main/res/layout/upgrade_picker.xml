@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/upgrade_picker_parent"
     android:orientation="vertical"
     android:layout_width="@dimen/picker_size"
     android:layout_height="@dimen/picker_size"
-    android:background="@drawable/background_orange"
+    android:layout_margin="@dimen/picker_padding"
+    android:background="@drawable/empty"
     >
 
     <ImageView

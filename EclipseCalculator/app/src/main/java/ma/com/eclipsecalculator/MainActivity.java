@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity
 
         Battle battle = new Battle();
         battle.addAttacker(
-                new Ship(true, ShipType.INTERCEPTOR, 5,
+                new Ship(true, ShipType.CRUISER, 2,
                         1, 0, 0, 0,
-                        1, 0,
+                        2, 0,
                         0, 0,
-                        3));
+                        2));
         battle.addDefender(
-                new Ship(false, ShipType.ANCIENT, 2,
+                new Ship(false, ShipType.ANCIENT, 1,
                         2, 0, 0, 0,
                         1, 0,
                         1, 0,
@@ -73,10 +73,9 @@ public class MainActivity extends AppCompatActivity
         for (Map.Entry<BattleResult,Integer> entry : results.entrySet()) {
             BattleResult battleResult = entry.getKey();
             Integer count = entry.getValue();
-            resultText.append(battleResult.getResult()).append(" : ").append(count).append("\n");
+            resultText.append(battleResult.getResult()).append(" : ").append(count / 10).append("\n");
         }
         text.setText(resultText.toString());
-
 
         L.a(RandomUtils.rollsString());
     }

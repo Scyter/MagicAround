@@ -5,7 +5,7 @@ import android.util.Log;
 public class L {
 
     public static void a(String text) {
-        Log.d("aa", text);
+        Log.d("aaaa", text);
     }
 
     public static void b(String text) {
@@ -13,10 +13,10 @@ public class L {
     }
 
     public static void c(String text) {
-        Log.d("aaaa", text);
+        Log.d("aa", text);
     }
 
     public static void d(String text) {
-        Log.d("aaaaa", text);
+        Log.d("d", text);
     }
 }
