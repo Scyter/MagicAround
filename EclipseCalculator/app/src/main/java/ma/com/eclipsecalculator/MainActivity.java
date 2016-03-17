@@ -1,5 +1,6 @@
 package ma.com.eclipsecalculator;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,12 +17,12 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-import ma.com.eclipsecalculator.utilsss.L;
-import ma.com.eclipsecalculator.utilsss.RandomUtils;
 import ma.com.eclipsecalculator.model.Battle;
 import ma.com.eclipsecalculator.model.BattleResult;
 import ma.com.eclipsecalculator.model.Ship;
 import ma.com.eclipsecalculator.model.ShipType;
+import ma.com.eclipsecalculator.utilsss.L;
+import ma.com.eclipsecalculator.utilsss.RandomUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,6 +53,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         TextView text = (TextView) findViewById(R.id.text);
+
+        Fragment fragment = new SelectShipsFragment();
+
+        getFragmentManager().beginTransaction().add(R.id.main_layout, fragment).commit();
 
         Battle battle = new Battle();
         battle.addAttacker(

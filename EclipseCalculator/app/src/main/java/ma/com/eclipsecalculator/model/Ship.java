@@ -1,5 +1,6 @@
 package ma.com.eclipsecalculator.model;
 
+import ma.com.eclipsecalculator.binding.Int;
 import ma.com.eclipsecalculator.utilsss.L;
 import ma.com.eclipsecalculator.utilsss.RandomUtils;
 
@@ -9,59 +10,75 @@ public class Ship {
 
     private boolean isAttacker;
 
-    private int count;
+    private Int count;
     private int currentCount;
 
-    private int ion;
-    private int plasma;
-    private int soliton;
-    private int antiMaterial;
-    private int rift;
+    private Int ion;
+    private Int plasma;
+    private Int soliton;
+    private Int antiMaterial;
+    private Int rift;
 
-    private int ionMissile;
-    private int plasmaMissile;
-    private int antiMaterialMissile;
+    private Int ionMissile;
+    private Int plasmaMissile;
+    private Int solitonMissile;
+    private Int antiMaterialMissile;
 
-    private int computer;
-    private int shield;
+    private Int computer;
+    private Int shield;
 
-    private int hull;
+    private Int hull;
     private int currentHull;
 
-    private int regeneration;
+    private Int regeneration;
 
-    private int initiative;
+    private Int initiative;
 
     private boolean struck;
 
-    public Ship(boolean isAttacker, int type, int count, int ion, int plasma, int soliton, int antiMaterial,
-                int computer, int shield, int hull, int regeneration, int initiative) {
+    public Ship(boolean isAttacker, int type, int count, int initiative,
+                int ion, int plasma, int soliton, int antiMaterial,
+                int computer, int shield, int hull, int regeneration) {
+        this(isAttacker, type, count, initiative, ion, plasma, soliton, antiMaterial,
+                0, 0, 0, 0, computer, shield, hull, regeneration);
+    }
+
+    public Ship(boolean isAttacker, int type, int count, int initiative,
+                int ion, int plasma, int soliton, int antiMaterial,
+                int ionMissile, int plasmaMissile, int solitonMissile, int antiMaterialMissile,
+                int computer, int shield, int hull, int regeneration) {
         this.isAttacker = isAttacker;
-        this.ion = ion;
-        this.plasma = plasma;
-        this.soliton = soliton;
-        this.antiMaterial = antiMaterial;
-        this.computer = computer;
-        this.shield = shield;
-        this.hull = hull;
-        this.regeneration = regeneration;
-        this.initiative = initiative;
-        this.count = count;
+        this.ion = new Int(ion);
+        this.plasma = new Int(plasma);
+        this.soliton = new Int(soliton);
+        this.antiMaterial = new Int(antiMaterial);
+        this.computer = new Int(computer);
+        this.shield = new Int(shield);
+        this.hull = new Int(hull);
+        this.regeneration = new Int(regeneration);
+        this.initiative = new Int(initiative);
+        this.count = new Int(count);
         this.type = new ShipType(type);
+        this.antiMaterial = new Int(antiMaterial);
+        this.ionMissile = new Int(ionMissile);
+        this.plasmaMissile = new Int(plasmaMissile);
+        this.solitonMissile = new Int(solitonMissile);
+        this.antiMaterialMissile = new Int(antiMaterialMissile);
+
     }
 
     public Strike strike() {
         Strike strike = new Strike();
-        for (int i = 0; i < ion; i++) {
+        for (int i = 0; i < ion.get(); i++) {
             strike.add(new Die(1, RandomUtils.roll()));
         }
-        for (int i = 0; i < plasma; i++) {
+        for (int i = 0; i < plasma.get(); i++) {
             strike.add(new Die(2, RandomUtils.roll()));
         }
-        for (int i = 0; i < soliton; i++) {
+        for (int i = 0; i < soliton.get(); i++) {
             strike.add(new Die(3, RandomUtils.roll()));
         }
-        for (int i = 0; i < antiMaterial; i++) {
+        for (int i = 0; i < antiMaterial.get(); i++) {
             strike.add(new Die(4, RandomUtils.roll()));
         }
         return strike;
@@ -76,16 +93,16 @@ public class Ship {
     }
 
     public void clear() {
-        currentCount = count;
-        currentHull = hull;
+        currentCount = count.get();
+        currentHull = hull.get();
         struck = false;
     }
 
     public void nextRound() {
         struck = false;
-        currentHull += regeneration;
-        if (currentHull > hull) {
-            currentHull = hull;
+        currentHull += regeneration.get();
+        if (currentHull > hull.get()) {
+            currentHull = hull.get();
         }
     }
 
@@ -105,52 +122,28 @@ public class Ship {
         return currentCount;
     }
 
-    public int getAntiMaterial() {
+    public Int getAntiMaterial() {
         return antiMaterial;
     }
 
-    public void setAntiMaterial(int antiMaterial) {
-        this.antiMaterial = antiMaterial;
-    }
-
-    public int getComputer() {
+    public Int getComputer() {
         return computer;
     }
 
-    public void setComputer(int computer) {
-        this.computer = computer;
-    }
-
-    public int getCount() {
+    public Int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getHull() {
+    public Int getHull() {
         return hull;
     }
 
-    public void setHull(int hull) {
-        this.hull = hull;
-    }
-
-    public int getIon() {
+    public Int getIon() {
         return ion;
     }
 
-    public void setIon(int ion) {
-        this.ion = ion;
-    }
-
-    public int getPlasma() {
+    public Int getPlasma() {
         return plasma;
-    }
-
-    public void setPlasma(int plasma) {
-        this.plasma = plasma;
     }
 
     public boolean isStruck() {
@@ -161,28 +154,17 @@ public class Ship {
         this.struck = struck;
     }
 
-    public int getRegeneration() {
+    public Int getRegeneration() {
         return regeneration;
     }
 
-    public void setRegeneration(int regeneration) {
-        this.regeneration = regeneration;
-    }
 
     public int getShield() {
-        return shield;
-    }
-
-    public void setShield(int shield) {
-        this.shield = shield;
+        return shield.get();
     }
 
     public int getSoliton() {
-        return soliton;
-    }
-
-    public void setSoliton(int soliton) {
-        this.soliton = soliton;
+        return soliton.get();
     }
 
     public boolean isAttacker() {
@@ -194,15 +176,11 @@ public class Ship {
     }
 
     public double getInitiative() {
-        return initiative + (isAttacker ? 0 : 0.1);
-    }
-
-    public void setInitiative(int initiative) {
-        this.initiative = initiative;
+        return initiative.get() + (isAttacker ? 0 : 0.1);
     }
 
     private void die() {
-        currentHull = hull;
+        currentHull = hull.get();
         currentCount--;
         L.b(isAttacker() + " " + getTypeString() + " die. Current count:" + currentCount);
     }

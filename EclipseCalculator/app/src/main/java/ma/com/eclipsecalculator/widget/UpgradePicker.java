@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import ma.com.eclipsecalculator.R;
+import ma.com.eclipsecalculator.binding.Int;
 import ma.com.eclipsecalculator.binding.ValueObserver;
 
 public class UpgradePicker extends FrameLayout implements ValueObserver<Integer> {
@@ -48,6 +49,11 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
     @Override
     public void update(Integer value) {
         changeValue(value);
+    }
+
+    public void bindData(Int observable) {
+        observable.setView(this);
+        changeValue(observable.get());
     }
 
     protected int getLayout() {
