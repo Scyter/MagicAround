@@ -1,5 +1,7 @@
 package ma.com.eclipsecalculator.model;
 
+import ma.com.eclipsecalculator.R;
+
 public class ShipType {
     public static final int INTERCEPTOR = 2;
     public static final int CRUISER = 4;
@@ -24,26 +26,51 @@ public class ShipType {
     @Override
     public String toString() {
         switch (value) {
-            case 1:
+            case ORBITAL:
                 return "ORBITAL";
-            case 2:
+            case INTERCEPTOR:
                 return "INTERCEPTOR";
-            case 3:
+            case STAR_BASE:
                 return "STAR_BASE";
-            case 4:
+            case CRUISER:
                 return "CRUISER";
-            case 5:
+            case DREADNOUGHT:
                 return "DREADNOUGHT";
-            case 6:
+            case DEATH_MOON:
                 return "DEATH_MOON";
-            case 7:
+            case ANCIENT:
                 return "ANCIENT";
-            case 8:
+            case CENTER:
                 return "CENTER";
-            case 9:
+            case ANOMALY:
                 return "ANOMALY";
             default:
                 return "UNKNOWN";
+        }
+    }
+
+    public int getDrawableId() {
+        switch (value) {
+            case ORBITAL:
+                return R.drawable.orbital;
+            case INTERCEPTOR:
+                return R.drawable.interceptor;
+            case STAR_BASE:
+                return R.drawable.starbase;
+            case CRUISER:
+                return R.drawable.cruiser;
+            case DREADNOUGHT:
+                return R.drawable.dreadnought;
+            case DEATH_MOON:
+                return R.drawable.deathmoon;
+            case ANCIENT:
+                return R.drawable.ancient;
+            case CENTER:
+                return R.drawable.center;
+            case ANOMALY:
+                return R.drawable.anomaly;
+            default:
+                return R.drawable.empty;
         }
     }
 }

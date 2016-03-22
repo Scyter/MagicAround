@@ -35,13 +35,6 @@ public class Ship {
     private Int initiative;
 
     private boolean struck;
-/*
-    public Ship(boolean isAttacker, int type, int count, int initiative,
-                int ion, int plasma, int soliton, int antiMaterial, int rift,
-                int computer, int shield, int hull, int regeneration) {
-        this(isAttacker, type, count, initiative, ion, plasma, soliton, antiMaterial, rift,
-                0, 0, 0, 0, computer, shield, hull, regeneration);
-    }*/
 
     public Ship(boolean isAttacker, int type, int count, int initiative, int computer, int shield, int hull,
                 int ion, int plasma, int soliton, int antiMaterial, int rift,
@@ -64,7 +57,49 @@ public class Ship {
         this.solitonMissile = new Int(solitonMissile);
         this.antiMaterialMissile = new Int(antiMaterialMissile);
         this.rift = new Int(rift);
+    }
 
+    public static Ship getShip(boolean isAttacker, int type) {
+        switch (type) {
+            case ShipType.INTERCEPTOR:
+                return new Ship(isAttacker, type, 1, 3, 0, 0, 0,
+                        1, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0);
+            case ShipType.CRUISER:
+                return new Ship(isAttacker, type, 1, 2, 1, 0, 1,
+                        1, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0);
+            case ShipType.DREADNOUGHT:
+                return new Ship(isAttacker, type, 1, 1, 1, 0, 2,
+                        2, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0);
+            case ShipType.STAR_BASE:
+                return new Ship(isAttacker, type, 1, 4, 1, 0, 2,
+                        1, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0);
+            case ShipType.ORBITAL:
+                return new Ship(isAttacker, type, 1, 0, 0, 0, 3,
+                        2, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0);
+            case ShipType.DEATH_MOON:
+                return new Ship(isAttacker, type, 1, 1, 1, 0, 4,
+                        0, 0, 0, 1, 0,
+                        0, 0, 0, 0, 0);
+            case ShipType.ANCIENT:
+                return new Ship(isAttacker, type, 1, 2, 1, 0, 1,
+                        2, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0);
+            case ShipType.CENTER:
+                return new Ship(isAttacker, type, 1, 0, 1, 0, 7,
+                        4, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0);
+            case ShipType.ANOMALY:
+                return new Ship(isAttacker, type, 1, 0, 0, 0, 6,
+                        0, 0, 0, 0, 3,
+                        0, 0, 0, 0, 0);
+
+        }
+        return null;
     }
 
     public Strike strike() {

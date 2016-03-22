@@ -1,7 +1,10 @@
 package ma.com.eclipsecalculator.constants;
 
-/**
- * Created by A.Kolubov on 22.03.2016.
- */
 public class Defaults {
+
+    private Defaults() {
+        // nothing
+    }
+
+    public static final int UNKNOWN_POSITIVE_INT = -1;
 }

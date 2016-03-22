@@ -116,13 +116,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/addon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/addon"
-            />
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -151,7 +144,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 picker:background_color="@drawable/background_blue"
-                picker:upgrade="@drawable/soliton_missile">
+                picker:upgrade="@drawable/soliton_missile"
+                android:visibility="gone">
 
             </ma.com.eclipsecalculator.widget.UpgradePicker>
 
@@ -172,6 +166,15 @@
                 picker:upgrade="@drawable/regeneration">
 
             </ma.com.eclipsecalculator.widget.UpgradePicker>
+
+            <ImageView
+                android:id="@+id/remove_ship"
+                android:layout_marginLeft="@dimen/remove_padding"
+                android:layout_width="@dimen/remove_size"
+                android:layout_height="@dimen/remove_size"
+                android:layout_gravity="center"
+                android:src="@drawable/remove"
+                />
 
         </LinearLayout>
     </FrameLayout>

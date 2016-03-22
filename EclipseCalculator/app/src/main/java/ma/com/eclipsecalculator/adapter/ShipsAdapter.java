@@ -36,7 +36,13 @@ public class ShipsAdapter extends ArrayAdapter<Ship> {
             convertView = inflater.inflate(R.layout.ship_item, parent, false);
         }
         ShipViewer viewer = (ShipViewer) convertView.findViewById(R.id.ship);
-        viewer.bind(getItem(position));
+        final Ship ship = getItem(position);
+        viewer.bind(ship, new ShipViewer.RemoveListener() {
+            @Override
+            public void removeShip() {
+                remove(ship);
+            }
+        });
         Log.d("bbb", (System.currentTimeMillis() - start) + "");
         return convertView;
     }

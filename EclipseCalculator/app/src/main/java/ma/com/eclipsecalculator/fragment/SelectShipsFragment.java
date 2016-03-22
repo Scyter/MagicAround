@@ -1,6 +1,8 @@
 package ma.com.eclipsecalculator.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,15 +16,19 @@ import java.util.Map;
 
 import ma.com.eclipsecalculator.R;
 import ma.com.eclipsecalculator.adapter.ShipsAdapter;
+import ma.com.eclipsecalculator.constants.Defaults;
+import ma.com.eclipsecalculator.constants.Fields;
 import ma.com.eclipsecalculator.model.Battle;
 import ma.com.eclipsecalculator.model.BattleResult;
 import ma.com.eclipsecalculator.model.Ship;
-import ma.com.eclipsecalculator.model.ShipType;
 import ma.com.eclipsecalculator.utilsss.L;
 import ma.com.eclipsecalculator.utilsss.RandomUtils;
 
 
 public class SelectShipsFragment extends Fragment {
+
+    private static final int SELECT_ATTACKER = 100;
+    private static final int SELECT_DEFENDER = 101;
 
     private ListView listShips;
     private ShipsAdapter adapter;
@@ -57,23 +63,14 @@ public class SelectShipsFragment extends Fragment {
         buttonAttacker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Ship addingShip = new Ship(true, ShipType.INTERCEPTOR, 1, 2, 1, 0, 0,
-                        1, 0, 0, 0, 0,
-                        0, 0, 0, 0,
-                        0);
-
-                adapter.add(addingShip);
+                showSelectShipTypeDialog(true);
             }
         });
 
         buttonDefender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Ship addingShip = new Ship(false, ShipType.ANCIENT, 1, 2, 1, 0, 1,
-                        2, 0, 0, 0, 0,
-                        0, 0, 0, 0,
-                        0);
-                adapter.add(addingShip);
+                showSelectShipTypeDialog(false);
             }
         });
 
@@ -88,14 +85,42 @@ public class SelectShipsFragment extends Fragment {
 
                 Map<BattleResult, Integer> results = battle.getResults();
                 StringBuilder resultText = new StringBuilder();
-                for (Map.Entry<BattleResult,Integer> entry : results.entrySet()) {
+                for (Map.Entry<BattleResult, Integer> entry : results.entrySet()) {
                     BattleResult battleResult = entry.getKey();
                     Integer count = entry.getValue();
-                    resultText.append(battleResult.getResult()).append(" : ").append(count / 10).append("\n");
+                    resultText.append(battleResult.getResult()).append(" : ").append(count).append("\n");
                 }
                 textResults.setText(resultText.toString());
                 L.a(RandomUtils.rollsString());
             }
         });
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            int shipType = data.getIntExtra(Fields.SHIP_TYPE, Defaults.UNKNOWN_POSITIVE_INT);
+            if (shipType == Defaults.UNKNOWN_POSITIVE_INT) {
+                return;
+            }
+            Ship addingShip = null;
+            if (requestCode == SELECT_ATTACKER) {
+                addingShip = Ship.getShip(true, shipType);
+            } else if (requestCode == SELECT_DEFENDER) {
+                addingShip = Ship.getShip(false, shipType);
+            }
+            if (addingShip == null) {
+                return;
+            }
+            adapter.add(addingShip);
+        }
+    }
+
+    private void showSelectShipTypeDialog(boolean isAttacker) {
+        SelectShipTypeDialog dialog = new SelectShipTypeDialog();
+        dialog.setTargetFragment(SelectShipsFragment.this, isAttacker ? SELECT_ATTACKER : SELECT_DEFENDER);
+        dialog.show(getFragmentManager(), SelectShipTypeDialog.TAG);
+    }
+
+
 }

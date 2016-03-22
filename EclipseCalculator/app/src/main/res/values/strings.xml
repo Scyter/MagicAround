@@ -12,4 +12,7 @@
     <string name="add_attacker">Add attacker</string>
     <string name="add_defender">Add defender</string>
 
+    <string name="select_type">Select ship type</string>
+
+
 </resources>

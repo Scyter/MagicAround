@@ -6,6 +6,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import ma.com.eclipsecalculator.R;
@@ -18,6 +19,7 @@ public class ShipViewer extends LinearLayout {
     private UpgradePicker count, initiative, computer, shield, hull, ion, plasma, soliton,
             antiMaterial, rift, ionMissile, plasmaMissile, solitonMissile, antiMaterialMissile, regeneration;
     private ViewGroup layout;
+    private ImageView remove;
 
     public ShipViewer(Context context) {
         super(context);
@@ -74,9 +76,11 @@ public class ShipViewer extends LinearLayout {
         solitonMissile = (UpgradePicker) findViewById(R.id.soliton_missile);
         antiMaterialMissile = (UpgradePicker) findViewById(R.id.anti_material_missile);
         regeneration = (UpgradePicker) findViewById(R.id.regeneration);
+
+        remove = (ImageView) findViewById(R.id.remove_ship);
     }
 
-    public void bind(Ship ship) {
+    public void bind(Ship ship, final RemoveListener listener) {
         this.ship = ship;
 
         layout.setBackgroundColor(getContext().getResources().getColor(ship.isAttacker() ? R.color.orange : R.color.white));
@@ -98,5 +102,16 @@ public class ShipViewer extends LinearLayout {
         solitonMissile.bindData(ship.getSolitonMissile());
         antiMaterialMissile.bindData(ship.getAntiMaterialMissile());
         regeneration.bindData(ship.getRegeneration());
+
+        remove.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.removeShip();
+            }
+        });
+    }
+
+    public interface RemoveListener {
+        void removeShip();
     }
 }

@@ -21,6 +21,8 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
     protected TextView textValue;
     protected ImageView image;
 
+    private Int bindData;
+
     private int value;
     private int maxValue = 100;
     private int minValue = 0;
@@ -54,6 +56,8 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
     public void bindData(Int observable) {
         observable.setView(this);
         changeValue(observable.get());
+
+        bindData = observable;
     }
 
     protected int getLayout() {
@@ -124,6 +128,10 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
             this.value = maxValue;
         } else {
             this.value = value;
+        }
+
+        if (bindData != null) {
+            bindData.setValueOnly(value);
         }
         updateView();
     }
