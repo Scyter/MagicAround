@@ -35,18 +35,17 @@ public class Ship {
     private Int initiative;
 
     private boolean struck;
-
+/*
     public Ship(boolean isAttacker, int type, int count, int initiative,
-                int ion, int plasma, int soliton, int antiMaterial,
+                int ion, int plasma, int soliton, int antiMaterial, int rift,
                 int computer, int shield, int hull, int regeneration) {
-        this(isAttacker, type, count, initiative, ion, plasma, soliton, antiMaterial,
+        this(isAttacker, type, count, initiative, ion, plasma, soliton, antiMaterial, rift,
                 0, 0, 0, 0, computer, shield, hull, regeneration);
-    }
+    }*/
 
-    public Ship(boolean isAttacker, int type, int count, int initiative,
-                int ion, int plasma, int soliton, int antiMaterial,
-                int ionMissile, int plasmaMissile, int solitonMissile, int antiMaterialMissile,
-                int computer, int shield, int hull, int regeneration) {
+    public Ship(boolean isAttacker, int type, int count, int initiative, int computer, int shield, int hull,
+                int ion, int plasma, int soliton, int antiMaterial, int rift,
+                int ionMissile, int plasmaMissile, int solitonMissile, int antiMaterialMissile, int regeneration) {
         this.isAttacker = isAttacker;
         this.ion = new Int(ion);
         this.plasma = new Int(plasma);
@@ -64,6 +63,7 @@ public class Ship {
         this.plasmaMissile = new Int(plasmaMissile);
         this.solitonMissile = new Int(solitonMissile);
         this.antiMaterialMissile = new Int(antiMaterialMissile);
+        this.rift = new Int(rift);
 
     }
 
@@ -146,6 +146,26 @@ public class Ship {
         return plasma;
     }
 
+    public Int getRift() {
+        return rift;
+    }
+
+    public Int getAntiMaterialMissile() {
+        return antiMaterialMissile;
+    }
+
+    public Int getIonMissile() {
+        return ionMissile;
+    }
+
+    public Int getPlasmaMissile() {
+        return plasmaMissile;
+    }
+
+    public Int getSolitonMissile() {
+        return solitonMissile;
+    }
+
     public boolean isStruck() {
         return struck;
     }
@@ -159,12 +179,12 @@ public class Ship {
     }
 
 
-    public int getShield() {
-        return shield.get();
+    public Int getShield() {
+        return shield;
     }
 
-    public int getSoliton() {
-        return soliton.get();
+    public Int getSoliton() {
+        return soliton;
     }
 
     public boolean isAttacker() {
@@ -175,8 +195,12 @@ public class Ship {
         this.isAttacker = isAttacker;
     }
 
-    public double getInitiative() {
+    public double getInitiativeValue() {
         return initiative.get() + (isAttacker ? 0 : 0.1);
+    }
+
+    public Int getInitiative() {
+        return initiative;
     }
 
     private void die() {

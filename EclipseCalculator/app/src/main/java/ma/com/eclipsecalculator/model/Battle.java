@@ -21,15 +21,16 @@ public class Battle {
         results = new HashMap<>();
     }
 
-    public void addAttacker(Ship ship) {
-        attackers.add(ship);
-    }
-
-    public void addDefender(Ship ship) {
-        defenders.add(ship);
+    public void addShip(Ship ship) {
+        if (ship.isAttacker()) {
+            attackers.add(ship);
+        } else {
+            defenders.add(ship);
+        }
     }
 
     public void calculate() {
+        results.clear();
         for (int i = 0; i < ITERATIONS; i++) {
             if (i % 100 == 0) {
                 L.a(i + " iteration");
@@ -53,6 +54,11 @@ public class Battle {
                 results.put(result, currentResultCount);
             }
         }
+    }
+
+    public void clearShips() {
+        attackers.clear();
+        defenders.clear();
     }
 
     public Map<BattleResult, Integer> getResults() {
@@ -98,13 +104,13 @@ public class Battle {
         Ship striker = null;
 
         for (Ship ship : attackers) {
-            if (!ship.isStruck() && (striker == null || striker.getInitiative() < ship.getInitiative())) {
+            if (!ship.isStruck() && (striker == null || striker.getInitiativeValue() < ship.getInitiativeValue())) {
                 striker = ship;
             }
         }
 
         for (Ship ship : defenders) {
-            if (!ship.isStruck() && (striker == null || striker.getInitiative() < ship.getInitiative())) {
+            if (!ship.isStruck() && (striker == null || striker.getInitiativeValue() < ship.getInitiativeValue())) {
                 striker = ship;
             }
         }
@@ -126,7 +132,7 @@ public class Battle {
                 int damage = die.getDamage();
                 L.b("roll:" + roll + " damage: " + damage);
                 if (roll > 1 && roll < 6) {
-                    if (roll + ship.getComputer() - target.getShield() >= 6) {
+                    if (roll + ship.getComputer().get() - target.getShield().get() >= 6) {
                         target.hit(damage);
                     }
                 } else if (roll == 6) {

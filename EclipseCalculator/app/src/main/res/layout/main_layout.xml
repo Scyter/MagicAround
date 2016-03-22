@@ -4,6 +4,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/results"
+        android:text="asd;fjkas;dlf;alskdjf;lasjdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -12,14 +17,21 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="@string/add_attacker"
             android:id="@+id/button_add_attacker"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="@string/add_defender"
             android:id="@+id/button_add_defender"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculate"
+            android:id="@+id/button_calculate"/>
     </LinearLayout>
+
     <ListView
         android:id="@+id/list_ships"
         android:layout_width="match_parent"

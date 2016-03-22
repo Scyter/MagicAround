@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import ma.com.eclipsecalculator.R;
@@ -16,6 +17,7 @@ public class ShipViewer extends LinearLayout {
     private View parent;
     private UpgradePicker count, initiative, computer, shield, hull, ion, plasma, soliton,
             antiMaterial, rift, ionMissile, plasmaMissile, solitonMissile, antiMaterialMissile, regeneration;
+    private ViewGroup layout;
 
     public ShipViewer(Context context) {
         super(context);
@@ -47,32 +49,54 @@ public class ShipViewer extends LinearLayout {
     }
 
     protected int getLayout() {
-        return R.layout.ship;
+        return R.layout.ship_layout;
     }
 
     private void init(AttributeSet attrs) {
         parent = inflate(getContext(), getLayout(), this);
+
+        layout = (ViewGroup) findViewById(R.id.ship_layout_main);
 
         count = (UpgradePicker) findViewById(R.id.count);
         initiative = (UpgradePicker) findViewById(R.id.initiative);
         computer = (UpgradePicker) findViewById(R.id.computer);
         shield = (UpgradePicker) findViewById(R.id.shield);
         hull = (UpgradePicker) findViewById(R.id.hull);
+
         ion = (UpgradePicker) findViewById(R.id.ion);
         plasma = (UpgradePicker) findViewById(R.id.plasma);
         soliton = (UpgradePicker) findViewById(R.id.soliton);
         antiMaterial = (UpgradePicker) findViewById(R.id.anti_material);
         rift = (UpgradePicker) findViewById(R.id.rift);
+
         ionMissile = (UpgradePicker) findViewById(R.id.ion_missile);
         plasmaMissile = (UpgradePicker) findViewById(R.id.plasma_missile);
         solitonMissile = (UpgradePicker) findViewById(R.id.soliton_missile);
         antiMaterialMissile = (UpgradePicker) findViewById(R.id.anti_material_missile);
         regeneration = (UpgradePicker) findViewById(R.id.regeneration);
-
-        bind();
     }
 
-    private void bind() {
+    public void bind(Ship ship) {
+        this.ship = ship;
+
+        layout.setBackgroundColor(getContext().getResources().getColor(ship.isAttacker() ? R.color.orange : R.color.white));
+
         count.bindData(ship.getCount());
+        initiative.bindData(ship.getInitiative());
+        computer.bindData(ship.getComputer());
+        shield.bindData(ship.getShield());
+        hull.bindData(ship.getHull());
+
+        ion.bindData(ship.getIon());
+        plasma.bindData(ship.getPlasma());
+        soliton.bindData(ship.getSoliton());
+        antiMaterial.bindData(ship.getAntiMaterial());
+        rift.bindData(ship.getRift());
+
+        ionMissile.bindData(ship.getIonMissile());
+        plasmaMissile.bindData(ship.getPlasmaMissile());
+        solitonMissile.bindData(ship.getSolitonMissile());
+        antiMaterialMissile.bindData(ship.getAntiMaterialMissile());
+        regeneration.bindData(ship.getRegeneration());
     }
 }

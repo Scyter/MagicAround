@@ -15,7 +15,7 @@ import ma.com.eclipsecalculator.R;
 import ma.com.eclipsecalculator.binding.Int;
 import ma.com.eclipsecalculator.binding.ValueObserver;
 
-public class UpgradePicker extends FrameLayout implements ValueObserver<Integer> {
+public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>, View.OnClickListener {
 
     protected View parent, viewUp, viewDown;
     protected TextView textValue;
@@ -79,19 +79,9 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
 
         image = (ImageView) findViewById(R.id.upgrade_image);
         viewUp = findViewUp();
-        viewUp.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeValue(value + 1);
-            }
-        });
+        viewUp.setOnClickListener(this);
         viewDown = findViewDown();
-        viewDown.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeValue(value - 1);
-            }
-        });
+        viewDown.setOnClickListener(this);
         textValue = findValueView();
 
         initAttributes(attrs);
@@ -141,6 +131,20 @@ public class UpgradePicker extends FrameLayout implements ValueObserver<Integer>
     private void updateView() {
         if (textValue != null) {
             textValue.setText(String.valueOf(value));
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.view_up:
+                changeValue(value + 1);
+                break;
+            case R.id.view_down:
+                changeValue(value - 1);
+                break;
+            default:
+                break;
         }
     }
 }

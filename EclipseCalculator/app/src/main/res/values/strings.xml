@@ -8,4 +8,8 @@
 
     <string name="addon">Missile/Regen</string>
 
+    <string name="calculate">Calculate</string>
+    <string name="add_attacker">Add attacker</string>
+    <string name="add_defender">Add defender</string>
+
 </resources>
